@@ -1,5 +1,4 @@
-require('dotenv').config();
-
+const config = require('./config');
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -7,27 +6,25 @@ const cors = require("cors");
 
 // Middleware
 app.use(cors());
+app.use(express.json()); //
 
-// connect to the database
-const DB_URL = process.env.DB_URL;
-mongoose.connect(
-    DB_URL,
-    { useNewUrlParser: true }
-);
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => console.log("Connected to the database"));
+// DB Config
+const DB_URL = config.dbUrl;
 
-app.use(express.json());
+// Connect to MongoDB
+mongoose
+  .connect(DB_URL)
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.log(err));
 
 // Routes
 const notesRouter = require("./routes/notes");
 app.use("/notes", notesRouter);
 
-// Send json respond to the client
+// Home Route
 app.get("/", (req, res) => {
     res.json({
-        message: "Hello World"
+        message: "Welcome to the Note App"
     });
 });
 
