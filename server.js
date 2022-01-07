@@ -1,15 +1,15 @@
 const config = require('./config');
 const express = require("express");
-const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
+const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json()); //
 
 // DB Config
-const DB_URL = config.dbUrl;
+const DB_URL = config.db_url;
 
 // Connect to MongoDB
 mongoose
@@ -21,14 +21,13 @@ mongoose
 const notesRouter = require("./routes/notes");
 app.use("/notes", notesRouter);
 
-// Home Route
+// Root API Call
 app.get("/", (req, res) => {
-    res.json({
-        message: "Welcome to the Note App"
-    });
+    res.send("<h2>Welcome to the Note App</h2>");
 });
 
-const PORT = process.env.PORT || 5000;
+// Start Server
+const PORT = config.port;
 app.listen(PORT, () => {
     console.log(`Server listening at port ${PORT}`)
 });
