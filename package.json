@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon src/server.js",
-    "lint": "eslint src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check-lint": "eslint src",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
