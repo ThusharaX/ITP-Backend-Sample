@@ -5,6 +5,22 @@ POST http://localhost:5000/notes/
 Content-Type: application/json
 
 {
-    "title": "My first note",
-    "content": "This is my first note"
+    "title": "My second note",
+    "content": "This is my second note"
 }
+###
+
+GET http://localhost:5000/notes/61d841ce134ac60d0a1e7087
+###
+
+PATCH http://localhost:5000/notes/61d841ce134ac60d0a1e7087
+Content-Type: application/json
+
+{
+    "title": "My first note - updated",
+    "content": "This is my first note - updated"
+}
+###
+
+DELETE http://localhost:5000/notes/61d878627477ce8d359e4293
+###

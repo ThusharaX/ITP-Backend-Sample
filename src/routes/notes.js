@@ -27,4 +27,57 @@ router.post("/", async (req, res) => {
     }
 });
 
+// Get a single note
+router.get("/:id", async (req, res) => {
+    try {
+        const note = await Note.findById(req.params.id);
+        res.json(note);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
+// Update a note
+router.patch("/:id", async (req, res) => {
+    try {
+        const note = await Note.findById(req.params.id);
+
+        if (!note) {
+            return res.status(404).json({ message: "Note not found" });
+        }
+
+        if (req.body.title) {
+            note.title = req.body.title;
+        }
+
+        if (req.body.content) {
+            note.content = req.body.content;
+        }
+
+        const updatedNote = await note.save();
+        res.json(updatedNote);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
+// Delete a note
+router.delete("/:id", async (req, res) => {
+    try {
+        const note = await Note.findById(req.params.id);
+
+        if (!note) {
+            return res.status(404).json({ message: "Note not found" });
+        }
+
+        await note.remove();
+        res.json({ message: "Note removed" });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
 module.exports = router;
