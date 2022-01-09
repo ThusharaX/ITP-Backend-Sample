@@ -14,7 +14,7 @@ const DB_URL = config.db_url;
 // Connect to MongoDB
 mongoose
   .connect(DB_URL)
-  .then(() => console.log("MongoDB Connected"))
+  .then(() => console.log("MongoDB Connected ✅"))
   .catch(err => console.log(err));
 
 // Routes
@@ -29,5 +29,5 @@ app.get("/", (req, res) => {
 // Start Server
 const PORT = config.port;
 app.listen(PORT, () => {
-    console.log(`Server listening at port ${PORT}`)
+    console.log(`Server listening at port ${PORT} 🚀`);
 });
