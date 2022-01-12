@@ -24,3 +24,10 @@ Content-Type: application/json
 
 DELETE http://localhost:5000/notes/61d878627477ce8d359e4293
 ###
+
+
+# Production
+GET https://itp-backend-sample.herokuapp.com/notes/
+###
+
+DELETE https://itp-backend-sample.herokuapp.com/notes/61db3d202f31e5a35d2cd232

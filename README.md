@@ -18,3 +18,9 @@ Run the server:
 ```
 yarn start
 ```
+
+## .env file sample
+```
+PORT = 5000
+DB_URL = <mongoDB url>
+```
